@@ -7,6 +7,6 @@ MINX(ALLSELECTED(df_airline[review_date].[Year]),
     [Average Rating])
 var _higlight=SWITCH(
     TRUE(),
-    _highest=[Average Rating],1,
+    _highest=[Average Rating],1,     //1,2,3 bisa diganti ke nama colour
     _lowest=[Average Rating],2,3)
 RETURN _higlight
