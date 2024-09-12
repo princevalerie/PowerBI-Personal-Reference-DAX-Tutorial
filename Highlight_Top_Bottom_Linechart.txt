@@ -1,0 +1,12 @@
+Highlight lowest and above = 
+VAR _highest =
+maxx(ALLSELECTED(df_airline[review_date].[Year]),
+    [Average Rating])
+VAR _lowest =
+MINX(ALLSELECTED(df_airline[review_date].[Year]),
+    [Average Rating])
+var _higlight=SWITCH(
+    TRUE(),
+    _highest=[Average Rating],1,
+    _lowest=[Average Rating],2,3)
+RETURN _higlight
