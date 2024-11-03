@@ -1,0 +1,7 @@
+First Order Date = 
+VAR CurrentCustomer = S[CustomerID]
+RETURN
+    CALCULATE(
+        EOMONTH(MIN(S[InvoiceDate]), 0),
+        FILTER(S, S[CustomerID] = CurrentCustomer)
+    )

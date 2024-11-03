@@ -1,0 +1,11 @@
+% Retention = 
+Var CurrentMonthAfter = SELECTEDVALUE('S3'[Value])
+VAR CurrentFirstOrderMonth =SELECTEDVALUE(S[First Order Date])
+RETURN
+DIVIDE(
+CALCULATE(
+    DISTINCTCOUNT(S[CustomerID]),
+    FILTER(
+        S,EOMONTH(S[InvoiceDate],0)=EOMONTH(CurrentFirstOrderMonth,CurrentMonthAfter)
+    )
+),DISTINCTCOUNT(S[CustomerID]))

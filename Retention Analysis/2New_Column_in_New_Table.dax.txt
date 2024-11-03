@@ -1,0 +1,1 @@
+NamaTabel = GENERATESERIES(0,12,1)
