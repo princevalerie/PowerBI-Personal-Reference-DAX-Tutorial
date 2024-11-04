@@ -1,0 +1,6 @@
+//mengembalikan function pada calculate pada tahun sebelumnya (-1 years) or bulan sebelumnya (-1 MONTH) or hari sebelumnya (-1 DAY)
+
+
+PREVIOUS YEAR(SUM) = CALCULATE(SUM(s[UnitPrice]),PREVIOUSYEAR(s[InvoiceDate].[Date]))
+PREVIOUS MONTH(SUM) = CALCULATE(SUM(s[UnitPrice]),PREVIOUSMONTH(s[InvoiceDate].[Date]))
+PREVIOUS DAY(SUM) = CALCULATE(SUM(s[UnitPrice]),PREVIOUSDAY(s[InvoiceDate].[Date]))
