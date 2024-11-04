@@ -1,0 +1,3 @@
+//mengembalikan function ke periode tahun lalu. sameperiod lastyear mengikuti filter
+
+yoy price (sameperiodlastyear) = CALCULATE(SUM(s[UnitPrice]),SAMEPERIODLASTYEAR(s[InvoiceDate].[Date]))
