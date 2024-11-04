@@ -1,0 +1,7 @@
+//mtd bakal rolling function selama 1 bulan,qtd bakal rolling function(sum) selama 1 quarter,ytd rolling setahun
+//FUNCTION bisa dijadikan average pada ytd untuk mencari moving average
+
+
+sum price mtd = TOTALMTD(SUM(s[UnitPrice]),s[InvoiceDate].[Date])
+sum price qtd = TOTALQTD(SUM(s[UnitPrice]),s[InvoiceDate].[Date])
+sum price ytd = TOTALYTD(SUM(s[UnitPrice]),s[InvoiceDate].[Date])
