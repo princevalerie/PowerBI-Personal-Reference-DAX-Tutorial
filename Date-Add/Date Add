@@ -1,1 +1,8 @@
+// Date Add dapat digunakan untuk referensi tahun lalu,quarter lalu,bulan lalu,hari lalu
+// Bahkan bisa untuk memperbandingkan secara fleksibel seperti 3 tahun yang lalu
+
 dateadd -10 day sum = CALCULATE(SUM(s[UnitPrice]),DATEADD(s[InvoiceDate].[Date],-10,DAY))
+//mengembalikan nilai ke 10 hari sebelumnya (digunakan untuk perbandingan)
+
+dateadd -2 year sum = CALCULATE(SUM(s[UnitPrice]),DATEADD(s[InvoiceDate].[Date],-2,YEAR))
+//mengembalikan nilai ke 2 tahun sebelumnya (digunakan untuk perbandingan)
