@@ -1,0 +1,13 @@
+//kedua fungsi ini sama sama mengembalikan ekspresi function ke dua hari sebelumnya dan hari ini digabung
+
+//bedanya betwwen perlu menginisiasikan date awal dan akhir sedangkan dates inperiod tidak 
+
+
+-2 day using date between = CALCULATE(SUM(s[UnitPrice]),
+DATESBETWEEN(s[InvoiceDate].[Date],
+DATEADD(LASTDATE(s[InvoiceDate].[Date]),-2,DAY),
+LASTDATE(s[InvoiceDate].[Date])))
+
+-2 day cum datesinperiod = CALCULATE(SUM(s[UnitPrice]),
+DATESINPERIOD(s[InvoiceDate].[Date],
+LASTDATE(s[InvoiceDate].[Date]),-2,DAY))
