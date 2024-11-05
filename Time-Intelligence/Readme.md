@@ -71,3 +71,88 @@ Time intelligence dalam DAX (Data Analysis Expressions) di Power BI dan alat Mic
 9. **DATEADD VS PARALLELPERIOD**  
    Keduanya mirip dalam menggeser waktu, tetapi **DATEADD** lebih fleksibel karena bisa menggeser dalam hitungan hari, sedangkan **PARALLELPERIOD** hanya bisa menggeser dalam hitungan bulan, kuartal, atau tahun.
 
+
+Mari kita bahas perbedaan antara **DATESBETWEEN** dan **DATESINPERIOD**, serta **DATEADD** dan **PARALLELPERIOD** dalam DAX, disertai dengan contoh-contoh yang mudah dipahami.
+
+### 1. **DATESBETWEEN vs. DATESINPERIOD**
+
+- **DATESBETWEEN**: Fungsi ini menghasilkan satu rangkaian tanggal dalam periode tertentu, mulai dari tanggal awal (start date) hingga tanggal akhir (end date) yang ditentukan. DATESBETWEEN sangat berguna untuk menetapkan periode waktu secara eksplisit, misalnya, dari tanggal 1 Januari hingga 31 Maret.
+
+  **Sintaks:**
+  ```dax
+  DATESBETWEEN(<Date_Column>, <Start_Date>, <End_Date>)
+  ```
+
+  **Contoh Penggunaan:**
+  Misalkan kita ingin menghitung total penjualan dari tanggal 1 Januari hingga 31 Maret.
+
+  ```dax
+  Sales Jan-Mar = CALCULATE(SUM(Sales[SalesAmount]), DATESBETWEEN(Dates[Date], DATE(2024, 1, 1), DATE(2024, 3, 31)))
+  ```
+
+- **DATESINPERIOD**: Fungsi ini juga menghasilkan rangkaian tanggal, tetapi berdasarkan periode relatif. Artinya, kita menentukan titik awal (anchor date) dan durasi (jumlah hari, bulan, kuartal, atau tahun), lalu fungsi ini menghitung periode dari titik awal tersebut ke belakang atau ke depan.
+
+  **Sintaks:**
+  ```dax
+  DATESINPERIOD(<Date_Column>, <Anchor_Date>, <Number>, <Interval>)
+  ```
+
+  **Contoh Penggunaan:**
+  Misalkan kita ingin melihat total penjualan dalam tiga bulan terakhir dari tanggal 31 Maret.
+
+  ```dax
+  Sales Last 3 Months = CALCULATE(SUM(Sales[SalesAmount]), DATESINPERIOD(Dates[Date], DATE(2024, 3, 31), -3, MONTH))
+  ```
+
+#### Perbedaan Utama:
+- **DATESBETWEEN** menggunakan rentang tanggal yang spesifik dari awal hingga akhir tanggal yang ditentukan.
+- **DATESINPERIOD** menggunakan titik awal dan bergerak ke depan atau ke belakang selama durasi tertentu (misalnya, 3 bulan ke belakang atau 2 tahun ke depan).
+
+---
+
+### 2. **DATEADD vs. PARALLELPERIOD**
+
+- **DATEADD**: Fungsi ini menggeser tanggal berdasarkan interval waktu yang fleksibel (hari, bulan, kuartal, atau tahun). Fungsi ini bisa menggeser ke depan atau ke belakang selama jangka waktu tertentu, yang cocok untuk analisis tren jangka pendek atau jangka panjang.
+
+  **Sintaks:**
+  ```dax
+  DATEADD(<Date_Column>, <Number_of_Intervals>, <Interval>)
+  ```
+
+  **Contoh Penggunaan:**
+  Misalkan kita ingin melihat penjualan dua bulan sebelumnya dari setiap tanggal dalam tabel.
+
+  ```dax
+  Sales 2 Months Ago = CALCULATE(SUM(Sales[SalesAmount]), DATEADD(Dates[Date], -2, MONTH))
+  ```
+
+- **PARALLELPERIOD**: Mirip dengan DATEADD, tetapi hanya bisa menggeser dalam unit bulan, kuartal, atau tahun (tidak bisa dalam hitungan hari). Fungsi ini lebih sering digunakan untuk analisis periode yang setara atau paralel, seperti melihat penjualan kuartal sebelumnya atau tahun lalu.
+
+  **Sintaks:**
+  ```dax
+  PARALLELPERIOD(<Date_Column>, <Number_of_Periods>, <Interval>)
+  ```
+
+  **Contoh Penggunaan:**
+  Misalkan kita ingin menghitung penjualan dari kuartal yang sama tahun lalu.
+
+  ```dax
+  Sales Last Quarter = CALCULATE(SUM(Sales[SalesAmount]), PARALLELPERIOD(Dates[Date], -1, QUARTER))
+  ```
+
+#### Perbedaan Utama:
+- **DATEADD** lebih fleksibel karena mendukung pergeseran dalam hari, selain bulan, kuartal, dan tahun.
+- **PARALLELPERIOD** digunakan hanya untuk pergeseran dalam bulan, kuartal, atau tahun, yang cocok untuk analisis periode paralel atau musiman.
+
+---
+
+### Kesimpulan:
+
+- **DATESBETWEEN** berguna saat kita tahu rentang tanggal yang spesifik.
+- **DATESINPERIOD** berguna saat kita ingin bergerak relatif dari titik awal dengan durasi tertentu.
+  
+- **DATEADD** memberikan fleksibilitas karena mendukung pergeseran dalam satuan hari, bulan, kuartal, dan tahun.
+- **PARALLELPERIOD** lebih tepat untuk analisis paralel, namun hanya bekerja pada bulan, kuartal, dan tahun, sehingga tidak mendukung pergeseran hari.
+
+
+
