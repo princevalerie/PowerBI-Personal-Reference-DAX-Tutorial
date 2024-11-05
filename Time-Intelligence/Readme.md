@@ -60,6 +60,14 @@ Time intelligence dalam DAX (Data Analysis Expressions) di Power BI dan alat Mic
    Sales YTD = CALCULATE(SUM(Sales[SalesAmount]), DATESYTD(Dates[Date]))
    ```
 
+   Contoh dengan Tahun Fiskal Berakhir pada Tanggal Khusus
+Jika perusahaan Anda memiliki tahun fiskal yang berakhir pada 31 Maret, maka kita bisa menetapkan Year_End_Date menjadi 31-03.
+
+   ```
+   YTD Sales Fiscal = CALCULATE(SUM(Sales[SalesAmount]), DATESYTD(Sales[Date], "31-03"))
+   ```
+Dalam contoh ini, DATESYTD akan menghasilkan rangkaian tanggal dari awal tahun fiskal (1 April tahun sebelumnya) hingga tanggal tertentu dalam tahun fiskal yang sama.
+
 8. **OPENINGBALANCEYEAR, CLOSINGBALANCEYEAR**  
    Fungsi **OPENINGBALANCEYEAR** mencari nilai pertama di awal tahun, sementara **CLOSINGBALANCEYEAR** mencari nilai terakhir di akhir tahun. Fungsi ini sering digunakan untuk menghitung saldo pembukaan atau penutupan.
 
