@@ -1,6 +1,6 @@
 Time intelligence dalam DAX (Data Analysis Expressions) di Power BI dan alat Microsoft lainnya adalah sekelompok fungsi yang memudahkan analisis data seiring waktu, seperti melihat data per bulan, per tahun, atau menghitung pertumbuhan dari satu periode ke periode lainnya. DAX memiliki fungsi khusus untuk membuat perhitungan ini tanpa perlu menulis rumus yang rumit. Mari kita jelaskan beberapa fungsi time intelligence yang paling umum dalam bahasa sederhana:
 
-###**TOTALYTD, TOTALQTD, TOTALMTD**  
+### **TOTALYTD, TOTALQTD, TOTALMTD**  
    Fungsi ini menghitung total akumulatif dari awal tahun, kuartal, atau bulan hingga titik tertentu.
 
    - **TOTALYTD** menghitung total dari awal tahun hingga tanggal tertentu. Misalnya, jika kita ingin melihat total penjualan dari Januari hingga Agustus.
@@ -12,7 +12,7 @@ Time intelligence dalam DAX (Data Analysis Expressions) di Power BI dan alat Mic
    Total Sales YTD = TOTALYTD(SUM(Sales[SalesAmount]), Dates[Date])
    ```
 
-###**SAMEPERIODLASTYEAR**  
+### **SAMEPERIODLASTYEAR**  
    Fungsi ini mengambil periode yang sama di tahun sebelumnya. Ini berguna untuk membandingkan angka tahun ini dengan angka di periode yang sama tahun lalu. Jika kita sedang menganalisis penjualan di Januari 2024, kita bisa menggunakan fungsi ini untuk melihat data di Januari 2023.
 
    **Contoh:**
@@ -20,7 +20,7 @@ Time intelligence dalam DAX (Data Analysis Expressions) di Power BI dan alat Mic
    Sales LY = CALCULATE(SUM(Sales[SalesAmount]), SAMEPERIODLASTYEAR(Dates[Date]))
    ```
 
-###**PREVIOUSYEAR, PREVIOUSQUARTER, PREVIOUSMONTH**  
+### **PREVIOUSYEAR, PREVIOUSQUARTER, PREVIOUSMONTH**  
    Fungsi-fungsi ini mengambil nilai dari tahun, kuartal, atau bulan sebelumnya. Misalnya, jika kita menganalisis penjualan di Februari 2024, kita bisa gunakan fungsi **PREVIOUSMONTH** untuk melihat data Januari 2024.
 
    **Contoh:**
@@ -28,7 +28,7 @@ Time intelligence dalam DAX (Data Analysis Expressions) di Power BI dan alat Mic
    Sales Last Month = CALCULATE(SUM(Sales[SalesAmount]), PREVIOUSMONTH(Dates[Date]))
    ```
 
-###**DATEADD**  
+### **DATEADD**  
    DATEADD menggeser tanggal dengan menambah atau mengurangi waktu tertentu (hari, bulan, kuartal, atau tahun). Misalnya, kita bisa melihat penjualan dua bulan yang lalu dari tanggal saat ini.
 
    **Contoh:**
@@ -36,7 +36,7 @@ Time intelligence dalam DAX (Data Analysis Expressions) di Power BI dan alat Mic
    Sales 2 Months Ago = CALCULATE(SUM(Sales[SalesAmount]), DATEADD(Dates[Date], -2, MONTH))
    ```
 
-###**PARALLELPERIOD**  
+### **PARALLELPERIOD**  
    Fungsi ini mirip dengan DATEADD tetapi hanya mendukung pergeseran waktu dalam satuan bulan, kuartal, atau tahun. Misalnya, kita bisa gunakan **PARALLELPERIOD** untuk melihat penjualan tiga bulan sebelumnya atau satu kuartal ke belakang.
 
    **Contoh:**
@@ -44,7 +44,7 @@ Time intelligence dalam DAX (Data Analysis Expressions) di Power BI dan alat Mic
    Sales 3 Months Ago = CALCULATE(SUM(Sales[SalesAmount]), PARALLELPERIOD(Dates[Date], -3, MONTH))
    ```
 
-###**FIRSTDATE, LASTDATE**  
+### **FIRSTDATE, LASTDATE**  
    Fungsi **FIRSTDATE** dan **LASTDATE** berguna untuk menemukan tanggal pertama atau terakhir dalam periode tertentu. Misalnya, kita bisa mengetahui kapan penjualan pertama kali terjadi di suatu bulan.
 
    **Contoh:**
@@ -52,7 +52,7 @@ Time intelligence dalam DAX (Data Analysis Expressions) di Power BI dan alat Mic
    First Sale Date = FIRSTDATE(Sales[SaleDate])
    ```
 
-###**DATESYTD, DATESQTD, DATESMTD**  
+### **DATESYTD, DATESQTD, DATESMTD**  
    Ketiga fungsi ini menghasilkan rangkaian tanggal dari awal tahun, kuartal, atau bulan hingga tanggal tertentu. Sering digunakan sebagai filter dalam perhitungan YTD, QTD, dan MTD.
 
    **Contoh:**
@@ -68,7 +68,7 @@ Jika perusahaan Anda memiliki tahun fiskal yang berakhir pada 31 Maret, maka kit
    ```
    Dalam contoh ini, DATESYTD akan menghasilkan rangkaian tanggal dari awal tahun fiskal (1 April tahun sebelumnya) hingga tanggal tertentu dalam tahun fiskal yang sama.
 
-###**OPENINGBALANCEYEAR, CLOSINGBALANCEYEAR**  
+### **OPENINGBALANCEYEAR, CLOSINGBALANCEYEAR**  
    Fungsi **OPENINGBALANCEYEAR** mencari nilai pertama di awal tahun, sementara **CLOSINGBALANCEYEAR** mencari nilai terakhir di akhir tahun. Fungsi ini sering digunakan untuk menghitung saldo pembukaan atau penutupan.
 
    **Contoh:**
@@ -76,7 +76,7 @@ Jika perusahaan Anda memiliki tahun fiskal yang berakhir pada 31 Maret, maka kit
    Opening Balance = OPENINGBALANCEYEAR(SUM(Sales[SalesAmount]), Dates[Date])
    ```
 
-###**DATEADD VS PARALLELPERIOD**  
+### **DATEADD VS PARALLELPERIOD**  
    Keduanya mirip dalam menggeser waktu, tetapi **DATEADD** lebih fleksibel karena bisa menggeser dalam hitungan hari, sedangkan **PARALLELPERIOD** hanya bisa menggeser dalam hitungan bulan, kuartal, atau tahun.
 
 
@@ -112,7 +112,7 @@ Mari kita bahas perbedaan antara **DATESBETWEEN** dan **DATESINPERIOD**, serta *
   Sales Last 3 Months = CALCULATE(SUM(Sales[SalesAmount]), DATESINPERIOD(Dates[Date], DATE(2024, 3, 31), -3, MONTH))
   ```
 
-#### Perbedaan Utama:
+Perbedaan Utama:
 - **DATESBETWEEN** menggunakan rentang tanggal yang spesifik dari awal hingga akhir tanggal yang ditentukan.
 - **DATESINPERIOD** menggunakan titik awal dan bergerak ke depan atau ke belakang selama durasi tertentu (misalnya, 3 bulan ke belakang atau 2 tahun ke depan).
 
@@ -148,13 +148,13 @@ Mari kita bahas perbedaan antara **DATESBETWEEN** dan **DATESINPERIOD**, serta *
   Sales Last Quarter = CALCULATE(SUM(Sales[SalesAmount]), PARALLELPERIOD(Dates[Date], -1, QUARTER))
   ```
 
-#### Perbedaan Utama:
+Perbedaan Utama:
 - **DATEADD** lebih fleksibel karena mendukung pergeseran dalam hari, selain bulan, kuartal, dan tahun.
 - **PARALLELPERIOD** digunakan hanya untuk pergeseran dalam bulan, kuartal, atau tahun, yang cocok untuk analisis periode paralel atau musiman.
 
 ---
 
-### Kesimpulan:
+Kesimpulan:
 
 - **DATESBETWEEN** berguna saat kita tahu rentang tanggal yang spesifik.
 - **DATESINPERIOD** berguna saat kita ingin bergerak relatif dari titik awal dengan durasi tertentu.
